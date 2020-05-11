@@ -37,6 +37,11 @@
 #define PMW3901_RAD_PER_PX 0.002443389
 #endif
 
+// SPI divisor, to adjust the clock speed according to the PCLK
+// Don't exceed 2MHz
+#ifndef PMW3901_SPI_CDIV
+#define PMW3901_SPI_CDIV SPIDiv256
+#endif
 
 #define PMW3901_REG_MOTION     0x02
 #define PMW3901_REG_DELTA_X_L  0x03
@@ -248,11 +253,11 @@ void pmw3901_init(struct pmw3901_t *pmw, struct spi_periph *periph, uint8_t slav
   pmw->trans.output_buf = pmw->spi_output_buf;
   pmw->trans.slave_idx = slave_idx;
   pmw->trans.select = SPISelectUnselect;
-  pmw->trans.cpol = SPICpolIdleHigh;
-  pmw->trans.cpha = SPICphaEdge2;
+  pmw->trans.cpol = SPICpolIdleLow;
+  pmw->trans.cpha = SPICphaEdge1;
   pmw->trans.dss = SPIDss8bit;
   pmw->trans.bitorder = SPIMSBFirst;
-  pmw->trans.cdiv = SPIDiv256;  // TODO verify
+  pmw->trans.cdiv = PMW3901_SPI_CDIV;
   pmw->trans.before_cb = NULL;
   pmw->trans.after_cb = NULL;
   pmw->trans.status = SPITransDone;

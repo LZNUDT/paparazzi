@@ -11,6 +11,7 @@
     <define name="OPTICFLOW_PMW3901_AGL_ID" value="ABI_BROADCAST" description="AGL source to listen to for velocity estimation"/>
     <define name="OPTICFLOW_PMW3901_AGL_TIMEOUT_US" value="500000" description="Lifetime of AGL measurements"/>
     <define name="PMW3901_RAD_PER_PX" value="0.002443389" description="Rad-per-px for ALL PMW3901 sensors"/>
+    <define name="PMW3901_SPI_CDIV" value="SPIDiv256" description="SPI Clock divisor to adjust according to PCLK, don't exceeed 2MHz"/>
     <define name="OPTICFLOW_PMW3901_RAD_PER_PX" value="(undefined)" description="Override rad-per-px only for the PMW3901 used by this module"/>
     <define name="SENSOR_SYNC_SEND_OPTICFLOW_PMW3901" value="FALSE" description="Send all new measurements over telemetry"/>
   </doc>
